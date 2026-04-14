@@ -8,6 +8,11 @@ import Home from './pages/Home.jsx'
 import Timeline from './pages/Timeline.jsx'
 import Stats from './pages/Stats.jsx'
 
+export const friendsLoader = async () => {
+  const res = await fetch("/friends.json");
+  return res.json();
+};
+
 const router =createBrowserRouter([
   {
     path:"",
@@ -15,6 +20,7 @@ const router =createBrowserRouter([
     children:[
       {
         index:true,
+        loader:friendsLoader,
         element:<Home></Home>
       },
       {
