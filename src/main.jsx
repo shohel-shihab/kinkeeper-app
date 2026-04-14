@@ -7,29 +7,40 @@ import Root from './pages/Root.jsx'
 import Home from './pages/Home.jsx'
 import Timeline from './pages/Timeline.jsx'
 import Stats from './pages/Stats.jsx'
+import FriendDetails from './components/FriendDetails.jsx'
+import ThemeContext from './context/ThemeContext.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 export const friendsLoader = async () => {
   const res = await fetch("/friends.json");
   return res.json();
 };
 
-const router =createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path:"",
-    element:<Root/>,
-    children:[
+    path: "",
+    element: <Root />,
+    children: [
       {
-        index:true,
-        loader:friendsLoader,
-        element:<Home></Home>
+        index: true,
+        loader: friendsLoader,
+        element: <Home></Home>
       },
       {
-        path:"timeline",
-        element:<Timeline></Timeline>
+        path: "friend/:friendId",
+        element: <FriendDetails></FriendDetails>
       },
       {
-        path:"stats",
-        element:<Stats></Stats>
+        path: "timeline",
+        element: <Timeline></Timeline>
+      },
+      {
+        path: "stats",
+        element: <Stats></Stats>
+      },
+      {
+        path:"*",
+        element:<NotFound></NotFound>
       }
     ]
   }
@@ -37,6 +48,8 @@ const router =createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <ThemeContext>
+      <RouterProvider router={router} />
+    </ThemeContext>
   </StrictMode>,
 )

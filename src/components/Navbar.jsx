@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { FaChartBar, FaClock, FaHome } from "react-icons/fa"
 import { Link, NavLink } from "react-router"
 
+
 const Navbar = () => {
+  
    const linkClass = ({ isActive }) =>
     isActive
       ? "flex items-center gap-2 bg-[#244D3F] font-semibold p-2 rounded-md text-white"
