@@ -1,5 +1,5 @@
 import { FaChartBar, FaClock, FaHome } from "react-icons/fa"
-import { NavLink } from "react-router"
+import { Link, NavLink } from "react-router"
 
 const Navbar = () => {
    const linkClass = ({ isActive }) =>
@@ -8,7 +8,7 @@ const Navbar = () => {
       : "flex items-center gap-2";
   return (
     <div className="flex justify-between p-4 shadow">
-      <h1 className="font-bold text-xl">KeenKeeper</h1>
+      <Link to="/"><span className="font-bold text-xl">KeenKeeper</span></Link>
       <div className="flex gap-6">
         <NavLink to="/" className={linkClass}>
           <FaHome /> Home
