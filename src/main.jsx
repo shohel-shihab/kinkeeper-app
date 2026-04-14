@@ -1,15 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import Root from './pages/Root.jsx'
 import Home from './pages/Home.jsx'
 import Timeline from './pages/Timeline.jsx'
 import Stats from './pages/Stats.jsx'
 import FriendDetails from './components/FriendDetails.jsx'
-import ThemeContext from './context/ThemeContext.jsx'
 import NotFound from './pages/NotFound.jsx'
+import AppProvider from './context/AppProvider.jsx'
+import { ToastContainer } from 'react-toastify'
 
 export const friendsLoader = async () => {
   const res = await fetch("/friends.json");
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: "friend/:friendId",
+        path: "friend/:id",
         element: <FriendDetails></FriendDetails>
       },
       {
@@ -39,8 +39,8 @@ const router = createBrowserRouter([
         element: <Stats></Stats>
       },
       {
-        path:"*",
-        element:<NotFound></NotFound>
+        path: "*",
+        element: <NotFound></NotFound>
       }
     ]
   }
@@ -48,8 +48,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeContext>
+    <AppProvider>
       <RouterProvider router={router} />
-    </ThemeContext>
+      <ToastContainer />
+    </AppProvider>
   </StrictMode>,
 )
