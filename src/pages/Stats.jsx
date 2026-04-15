@@ -5,7 +5,6 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const Stats = () => {
     const { timeline } = useContext(AppContext)
-
     // 🔹 Count interactions
     const callCount = timeline.filter(t => t.type === "Call").length;
     const textCount = timeline.filter(t => t.type === "Text").length;
@@ -13,12 +12,12 @@ const Stats = () => {
 
     // 🔹 Chart data
     const data = [
-        { name: "Call", value: callCount },
         { name: "Text", value: textCount },
+        { name: "Call", value: callCount },
         { name: "Video", value: videoCount }
     ];
 
-    const COLORS = ["#16a34a", "#2563eb", "#9333ea"];
+    const COLORS = ["#244d3f", "#7f37f5", "#37a163"];
     return (
         <div className="p-6">
 
@@ -39,7 +38,7 @@ const Stats = () => {
                             label
                         >
                             {data.map((entry, index) => (
-                                <Cell key={index} fill={COLORS[index]} />
+                                <Cell  key={index} fill={COLORS[index]} />
                             ))}
                         </Pie>
 
