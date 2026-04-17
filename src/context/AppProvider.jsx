@@ -3,15 +3,16 @@ export const AppContext =createContext();
 const AppProvider = ({ children }) => {
   const [timeline, setTimeline] = useState([]);
 
+  
   const addEvent = (type, name) => {
-    const event = {
+    const newEvent = {
       id: Date.now(),
       type,
       title: `${type} with ${name}`,
       date: new Date().toLocaleDateString()
     };
 
-    setTimeline(prev => [event, ...prev]);
+    setTimeline(prev => [newEvent, ...prev]);
   };
 
   return (
@@ -21,4 +22,4 @@ const AppProvider = ({ children }) => {
   );
 };
 
-export default AppProvider;
+export default AppProvider

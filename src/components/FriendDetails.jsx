@@ -35,7 +35,7 @@ const FriendDetails = () => {
   // 🔹 Handle timeline event
   const handleCheckIn = (type) => {
     addEvent(type, friend.name);
-    toast.success(`${type} added`);
+    toast.success(`${type} ${friend.name}`);
   };
 
   return (
